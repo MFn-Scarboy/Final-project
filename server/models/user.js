@@ -7,8 +7,8 @@ const UserSchema = new Schema({
     email: String,
     password: String,
     driver: Boolean,
-    driverRides: [],
-    passengerRides: []
+    driverRides: Array,
+    passengerRides: Array
 })
 
 const User = mongoose.model('User', UserSchema)
