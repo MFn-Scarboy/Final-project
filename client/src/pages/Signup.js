@@ -8,11 +8,11 @@ export default class Signup extends Component {
         super(props)
 
         this.state = {
-            firstname: "",
-            lastname: "",
-            email: "",
-            password: "",
-            driver: false,
+            firstname : "",
+            lastname  : "",
+            email     : "",
+            password  : "",
+            driver    : false
         }
 
         this.handleChange       = this.handleChange.bind(this)

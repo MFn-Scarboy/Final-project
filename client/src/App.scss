@@ -65,7 +65,41 @@
 
 // // Rides // //
 
+.rides-div {
+  border: 1px solid black;
+  height: 20vh;
+  margin-top: 1vh;
+  padding: 1% ;
+  display: flex;
 
+  p {
+    margin: 0;
+    text-transform: initial
+  }
+
+  p::first-letter {
+    text-transform: uppercase;
+  }
+}
+
+.rides-btn-div {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.rides-btn {
+  width: 20vw;
+  height: 10vh;
+  margin-top: 1vh
+}
+
+.rides-div1 {
+  width: 50vw;
+}
+
+.rides-div2 {
+  width: 50vw
+}
 
 // // ----- // //
 
@@ -83,5 +117,12 @@
 .create-ride-btn {
   margin-top: 2vh
 }
+
+// // ----- // //
+
+
+// // MyRides
+
+
 
 // // ----- // //

@@ -8,7 +8,7 @@ const cors       = require('cors')
 const app        = express()
 
 mongoose
-    .connect(process.env.DB, { useNewUrlParser: true })
+    .connect(process.env.DB, { useFindAndModify: false, useNewUrlParser: true })
     .then(x => {
         console.log(`Connected to Mongo database: "${x.connections[0].name}"`)
     })
@@ -53,6 +53,9 @@ app.use("/auth", ridedetailRoute)
 
 const ridesRoute = require("./routes/auth/rides")
 app.use("/auth", ridesRoute)
+
+const myridesRoute = require("./routes/auth/myrides")
+app.use("/auth", myridesRoute)
 
 app.use(function (error, req, res, next) {
     console.error(error.stack)

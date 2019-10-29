@@ -29,7 +29,7 @@ export default class App extends Component {
       <div className="App">
         <Route exact path="/create" component={ Create }/>
         <Route exact path="/profile" component={ Profile }/>
-        <Route exact path="/ridedetail" component={ RideDetail}/>
+        <Route exact path="/ridedetail/:rideId" component={ RideDetail }/>
         <Route exact path="/" component={ Rides }/>
         <Route exact path="/login" component={ Login }/>
         <Route exact path="/signup" component={ Signup }/>

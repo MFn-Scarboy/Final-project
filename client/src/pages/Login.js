@@ -35,12 +35,10 @@ export default class Login extends Component {
             withCredentials: true
         })
         .then((response) => {
-            debugger
             localStorage.setItem('user', JSON.stringify(response.data))
             this.props.history.push('/')
         })
         .catch((error) => {
-            debugger
             console.log(error)
         })
     }

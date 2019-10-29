@@ -36,11 +36,10 @@ export default class Create extends Component {
             withCredentials: true
         })
         .then((response) => {
-            debugger
             this.props.history.push("/ridedetail")
         })
         .catch((error) => {
-            debugger
+            console.log(error)
         })
     }
 

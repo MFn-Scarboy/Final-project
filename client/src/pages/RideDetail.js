@@ -6,11 +6,23 @@ export default class RideDetail extends Component {
         super(props)
 
         this.state = {
-        
+            ride: {}
         }
     }
 
-    
+    componentDidMount() {
+        axios({
+            method: "GET",
+            url: `${process.env.REACT_APP_SERVER}/auth/ridedetail/${this.props.match.params.rideId}`,
+            withCredentials: true
+        })
+        .then((response) => {
+            this.setState({ ride: response.data })
+        })
+        .catch((error) => {
+            console.log(error)
+        })
+    }
 
     render() {
         return (

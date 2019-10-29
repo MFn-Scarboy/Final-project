@@ -1,17 +1,21 @@
 const express    = require("express")
+const mongoose   = require('mongoose')
 const router     = express.Router()
 const session    = require("express-session")
 const Ride       = require("../../models/ride")
-
+const User       = require("../../models/user")
 
 router.post("/rides", (req, res, next) => {
-console.log(req.session)
+    const userId         = req.session.user._id
+    const driverRides    = req.session.user.driverRides.map(rideId =>{
+        return mongoose.Types.ObjectId(rideId)
+    })
     const location       = req.body.location
     const destination    = req.body.destination
     const estArrivalTime = req.body.estArrivalTime
     const departureTime  = req.body.departureTime
     const availableSpots = req.body.availableSpots
-    
+
     if(location === "" || destination === "" || estArrivalTime === "" || departureTime === "" || availableSpots === "") {
         res.send("create", {
             errorMessage: "Please fill in all the forms."
@@ -19,7 +23,7 @@ console.log(req.session)
         return
     } else {
         Ride.create({
-            driver          : req.session.user._id,
+            driver          : userId,
             location        : req.body.location,
             destination     : req.body.destination,
             estArrivalTime  : req.body.estArrivalTime,
@@ -27,8 +31,10 @@ console.log(req.session)
             availableSpots  : req.body.availableSpots
         })
         .then((ride) => {
-            console.log(ride)
-            res.send({ ride })
+            driverRides.push(ride._id);
+            return User.findByIdAndUpdate(userId, {driverRides})
+            .then(()=> res.send({ ride }) )
+            .catch(err => console.log(err))
         })
         .catch((error) => {
             console.log(error)

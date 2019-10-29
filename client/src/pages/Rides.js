@@ -27,20 +27,27 @@ export default class Rides extends Component {
     render() {
         return (
             <div>
-                <div>
-                    <button><Link to="/login">login</Link></button> {/*set departure/destination */}
-                    <button><Link to="/signup">Sign up</Link></button> {/* rides signed up for */}
-                    <button><Link to="/create">Create a Ride</Link></button>
-                    <button><Link to="/profile">Profile</Link></button>
+                <div className="rides-btn-div">
+                    <button className="rides-btn"><Link to="/login">Login</Link></button> {/*set departure/destination */}
+                    <button className="rides-btn"><Link to="/myrides">My rides</Link></button> {/* rides signed up for */}
+                    <button className="rides-btn"><Link to="/create">Create</Link></button>
+                    <button className="rides-btn"><Link to="/profile">Profile</Link></button>
                 </div>
-            {this.state.rides.map((currentValue) => {
-                return <div className="ride-div">
-                    <h2>{currentValue.location}</h2>
-                    <h2>{currentValue.destination}</h2>
-                    <h2>{currentValue.estArrivalTime}</h2>
-                    <h2>{currentValue.departureTime}</h2>
-                    <h2>{currentValue.availableSpots}</h2>
-                </div>
+            {this.state.rides.map((currentValue, index) => {
+                return (
+                <Link to={`/ridedetail/${currentValue._id}`}><div className="rides-div" key={index.toString()}>
+                    <div className="rides-div1">
+                        <p>{currentValue.location}</p>
+                        <p>to</p>
+                        <p>{currentValue.destination}</p>
+                    </div>
+                    <div className="rides-div2">
+                        <p>{currentValue.departureTime} departure</p>
+                        <p>{currentValue.estArrivalTime} arrival</p>
+                        <p>{currentValue.availableSpots} spots available</p>
+                    </div>
+                </div></Link>
+                )
             })}
             </div>
         )
