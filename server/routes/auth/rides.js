@@ -4,7 +4,9 @@ const Ride       = require('../../models/ride')
 
 router.get("/rides", (req, res, next) => {
 
-    Ride.find({})
+    Ride.find({
+        driver: { $ne: req.session.user._id}
+    })
     .then(rides => {
         res.send({ rides })
     })
